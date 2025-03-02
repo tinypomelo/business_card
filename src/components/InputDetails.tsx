@@ -1,11 +1,10 @@
-import { Button, Input, Label, SelectTheme, Textarea, ThemesWrap } from "../styled/UserInputSection"
+import { Button, Input } from "../styled/UserInputSection"
 
 interface Props {
     inputs: Record<string, string | undefined>,
     themes: string[],
     colorChange: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
     handleInputChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-    handleInputImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     download_image: () => void,
     downloadState: boolean,
     downloadable: boolean,
@@ -13,32 +12,20 @@ interface Props {
 
 const InputDetails = ({
     handleInputChange,
-    handleInputImageChange,
     inputs,
-    themes,
-    colorChange,
     downloadState,
     downloadable,
     download_image
 }: Props) => {
     return (
         <>
-            <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-            <Input
-                type="file"
-                accept="image/*"
-                onChange={handleInputImageChange}
-                id="image"
-                placeholder="Upload an image"
-                required
-            />
             <Input
                 type="text"
                 name="name"
                 onChange={handleInputChange}
                 value={inputs.name || ""}
                 id="name"
-                placeholder="Your name?"
+                placeholder="Tên"
                 required
                 autoComplete="off"
             />
@@ -48,17 +35,7 @@ const InputDetails = ({
                 onChange={handleInputChange}
                 value={inputs.occupation || ""}
                 id="occupation"
-                placeholder="Profession"
-                required
-                autoComplete="off"
-            />
-            <Input
-                type="text"
-                name="website"
-                onChange={handleInputChange}
-                value={inputs.website || ""}
-                id="website"
-                placeholder="Website"
+                placeholder="Chức danh"
                 required
                 autoComplete="off"
             />
@@ -72,43 +49,22 @@ const InputDetails = ({
                 required
                 autoComplete="off"
             />
-            <Textarea
-                name="about"
+            <Input
+                type="text"
+                name="phone"
                 onChange={handleInputChange}
-                value={inputs.about || ""}
-                id="about"
-                placeholder="A little bit about you.."
-                rows={5}
+                value={inputs.phone || ""}
+                id="phone"
+                placeholder="Số điện thoại"
                 required
                 autoComplete="off"
             />
-            <Textarea
-                name="services"
-                onChange={handleInputChange}
-                value={inputs.services || ""}
-                id="interests"
-                placeholder="Services offered..."
-                rows={5}
-                required
-                autoComplete="off"
-            />
-            <ThemesWrap>
-                <p>Theme </p>
-                {
-                    themes.map((item, index) => {
-                        return (
-                            <SelectTheme key={index} onClick={colorChange} style={{ backgroundColor: item }} />
-                        )
-                    })
-                }
-            </ThemesWrap>
             <Button
                 className="for-desktop download_btn"
-                disabled={downloadable ? false : true}
                 title={downloadable ? "" : "Please fill out all fields"}
                 onClick={download_image}
             >
-                Download
+                Tải về
                 <i className={downloadState ? "fas fa-circle-notch load" : "fas fa-download"}></i>
             </Button>
         </>

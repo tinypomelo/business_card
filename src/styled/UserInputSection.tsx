@@ -11,7 +11,7 @@ export const UserInputWrap = styled.div`
         display: none;
     }
     input, textarea, button, label {
-        font-family: 'Poppins', sans-serif;
+        font-family: Helvetica, Arial, sans-serif;
     }
     input, textarea, button, label, input::placeholder, textarea::placeholder{
         font-size: 0.85rem;
@@ -115,7 +115,7 @@ export const Button = styled.button`
             margin-top: 2rem;
 
             .content{
-                font-family: 'Poppins', sans-serif;
+                font-family: Helvetica, Arial, sans-serif;
                 
                 > i{
                     margin-left: 0.5rem;
@@ -142,7 +142,7 @@ export const ThemesWrap = styled.div`
     width: 85%;
     gap: 1rem;
     font-size: 0.85rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background-color: #1A1B21;
     padding: 0.7rem 1rem 1rem 1rem;
     border-radius: 0.4rem;

@@ -22,7 +22,7 @@ export const CardStyled = styled.div<{
     colors: Record<string, string>;
 }>`
     background-color: ${props => props.colors.cardBackgroundColor};
-    width: 17rem;
+    width: 32.5rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
     overflow: hidden;
@@ -43,13 +43,14 @@ export const IntroductionStyled = styled.div<{
     colors: Record<string, string>
 }>`
     margin-bottom: 1.5rem;
-    .name, .occupation, .website{
-        margin: 0;
-        text-align: center;
+    .name, .occupation, .phone, .email{
+        margin-left: 1rem;
+        margin-right: 1rem;
+        text-align: left;
     }
     .name{
         font-size: 1.3rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: Helvetica, Arial, sans-serif;
         font-weight: bold;
         color: ${props => props.colors.nameColor}
     }
@@ -58,11 +59,50 @@ export const IntroductionStyled = styled.div<{
         font-family: 'Lato', sans-serif;
         color: ${props => props.colors.occupationColor};
     }
-    .website{
+    .phone{
         font-size: 0.6rem;
         margin-top: 0.5rem;
-        color: ${props => props.colors.websiteColor};
+        color: ${props => props.colors.phoneColor};
         font-family: 'Inter', sans-serif;
+    }
+    .email{
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+        color: ${props => props.colors.emailColor};
+        font-family: 'Inter', sans-serif;
+    }
+    .logo{
+        margin-top: 1rem;
+        margin-bottom: 2.5rem;
+        float: right;
+        width: 14rem;
+    }
+    .company{
+        font-size: 1.3rem;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        color: ${props => props.colors.companyColor}
+    }
+    .info{
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+        color: ${props => props.colors.phoneColor};
+        font-family: 'Inter', sans-serif;
+    }
+    .icon{        
+        width:0.75rem;
+        margin-right: 0.25rem;
+    }
+    .icon svg{
+        color: #767676;
+    }    
+    .fas{
+        margin-right: 0.25rem;
+    }
+    .qrcode{
+        height: 6.5rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
     }
 `;
 
@@ -94,50 +134,4 @@ export const ContactCTAWrapperStyled = styled.div`
         background-color: #5093E2;
         color: #ffffff;
     }
-`;
-
-export const AboutWrapper = styled.div<{
-    colors: Record<string, string>
-}>`
-    padding: 0 2rem;
-
-    .about, .interests{
-        margin-bottom: 1.5rem;
-    }
-    .title, .desc{
-        font-family: 'Inter', sans-serif;
-        font-size: 0.6rem;
-        color: ${props => props.colors.descColor};
-    }
-    .title{
-        color: ${props => props.colors.aboutInterestsTitleColor};
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 0.2rem;
-    }
-`;
-
-export const SocialsStyled = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    color: #918E9B;
-    padding: 0.6rem 0.5rem;
-    font-size: 1.5rem;
-    background-color: #161619;
-
-    a{
-        color: #918E9B;
-    }
-`;
-
-export const EmailStyled = styled(SocialsStyled)<{
-    colors: Record<string, string>
-}>`
-    font-size: 0.6rem;
-    font-family: 'Poppins', sans-serif;
-    padding: 0.8rem 0.5rem;
-    color: ${props => props.colors.emailColor};
-    background-color: ${props => props.colors.emailBackgroundColor};
 `;

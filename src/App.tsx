@@ -7,45 +7,30 @@ import { HeadingStyled } from './styled/Headings.js'
 import Card from "./components/Card";
 import Footer from './components/Footer.js'
 
-import img_location from './assets/profile.png'
 import { doFetch } from "./services/fetchService.js";
 import InputDetails from './components/InputDetails.js'
 
 function App() {
-  const [image, setImage] = useState(img_location);
   const [downloadState, setDownloadState] = useState(false);
   const [downloadable, setDownloadable] = useState(false);
   const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth / 16));
   const [inputs, setInputs] = useState<Record<string, string | undefined>>({
     name: undefined,
     occupation: undefined,
-    website: undefined,
+    phone: undefined,
     email: undefined,
-    about: undefined,
-    services: undefined
-  });
-  const [isImageModified, setIsImageModified] = useState<{
-    status: boolean,
-    fileType: string,
-    target: {
-      files: FileList | null
-    }
-  }>({
-    status: false,
-    fileType: "",
-    target: {
-      files: null
-    }
   });
   const [colors, setColors] = useState({
-    cardBackgroundColor: "#1A1B21",
-    nameColor: "#FFFFFF",
-    occupationColor: "#F3BF99",
-    websiteColor: "#767676",
-    aboutInterestsTitleColor: "#F5F5F5",
-    descColor: "#9a9a9a",
-    emailColor: "#918E9B",
-    emailBackgroundColor: "#161619"
+    cardBackgroundColor: "#fff",
+    nameColor: "#000000",
+    companyColor: "#1E4594",
+    occupationColor: "#EC202A",
+    phoneColor: "#767676",
+    aboutInterestsTitleColor: "#252525",
+    descColor: "#7e7e7e",
+    infoColor: "#747474",
+    emailColor: "#747474",
+    emailBackgroundColor: "#D5D4D8"
   });
   const [themes] = useState([
     "black",
@@ -55,29 +40,6 @@ function App() {
     "#3D5A80",
     "#582C4D"
   ]);
-
-  useEffect(() => {
-    const uploadLabel = document.querySelector("#upload_label") as HTMLLabelElement;
-
-    if (isImageModified.status) {
-      if (isImageModified.fileType === "image") {
-        if (document.querySelector("#image") !== null) {
-          if ((document.querySelector("#image") as HTMLInputElement).files?.length === 1) {
-            if (isImageModified.target.files) setImage(URL.createObjectURL(new Blob([isImageModified.target.files[0]], { type: "image" })));
-            uploadLabel.innerHTML = "Uploaded Successfully!";
-            uploadLabel.classList.remove("focus");
-            setTimeout(() => {
-              uploadLabel.innerHTML = "Upload new pic";
-            }, 2500)
-          }
-        }
-      } else {
-        uploadLabel.innerHTML = "Please upload an image file";
-        uploadLabel.classList.add("focus");
-        (document.querySelector(".main-heading") as HTMLElement).scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [isImageModified])
 
   function inputChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const target = e.target;
@@ -151,11 +113,13 @@ function App() {
         cardBackgroundColor: "#582C4D",
         nameColor: "#ECE2D0",
         occupationColor: "#F3BF99",
-        websiteColor: "#BFB5AF",
+        phoneColor: "#BFB5AF",
         aboutInterestsTitleColor: "#ECE2D0",
         descColor: "#D6CCC0",
         emailColor: "#BFB5AF",
-        emailBackgroundColor: "#6B3B54"
+        emailBackgroundColor: "#6B3B54",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     } else if (target.style.backgroundColor === "black") {
       borderChange(target);
@@ -163,11 +127,13 @@ function App() {
         cardBackgroundColor: "#1A1B21",
         nameColor: "#FFFFFF",
         occupationColor: "#F3BF99",
-        websiteColor: "#767676",
+        phoneColor: "#767676",
         aboutInterestsTitleColor: "#F5F5F5",
         descColor: "#9a9a9a",
         emailColor: "#918E9B",
-        emailBackgroundColor: "#161619"
+        emailBackgroundColor: "#161619",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     } else if (target.style.backgroundColor === "white") {
       borderChange(target);
@@ -175,11 +141,13 @@ function App() {
         cardBackgroundColor: "#F5F5F5",
         nameColor: "#000000",
         occupationColor: "#d46c1f",
-        websiteColor: "#767676",
+        phoneColor: "#767676",
         aboutInterestsTitleColor: "#252525",
         descColor: "#7e7e7e",
         emailColor: "#747474",
-        emailBackgroundColor: "#D5D4D8"
+        emailBackgroundColor: "#D5D4D8",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     } else if (target.style.backgroundColor === "rgb(61, 90, 128)") {
       borderChange(target);
@@ -187,11 +155,13 @@ function App() {
         cardBackgroundColor: "#3D5A80",
         nameColor: "#E0FBFC",
         occupationColor: "#E7B4A5",
-        websiteColor: "#98C1D9",
+        phoneColor: "#98C1D9",
         aboutInterestsTitleColor: "#E0FBFC",
         descColor: "#98C1D9",
         emailColor: "#98C1D9",
-        emailBackgroundColor: "#385071"
+        emailBackgroundColor: "#385071",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     } else if (target.style.backgroundColor === "rgb(244, 232, 193)") {
       borderChange(target);
@@ -199,11 +169,13 @@ function App() {
         cardBackgroundColor: "#F4E8C1",
         nameColor: "#502419",
         occupationColor: "#2B4141",
-        websiteColor: "#A2866D",
+        phoneColor: "#A2866D",
         aboutInterestsTitleColor: "#502419",
         descColor: "#795543",
         emailColor: "#502419",
-        emailBackgroundColor: "#E0D0AC"
+        emailBackgroundColor: "#E0D0AC",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     }
     else if (target.style.backgroundColor === "rgb(238, 180, 179)") {
@@ -212,11 +184,13 @@ function App() {
         cardBackgroundColor: "#EEB4B3",
         nameColor: "#402350",
         occupationColor: "#784784",
-        websiteColor: "#2F242C",
+        phoneColor: "#2F242C",
         aboutInterestsTitleColor: "#402350",
         descColor: "#784784",
         emailColor: "#402350",
-        emailBackgroundColor: "#DBA2AC"
+        emailBackgroundColor: "#DBA2AC",
+        infoColor: "#fff",
+        companyColor: "#fff"
       })
     }
   }
@@ -277,11 +251,6 @@ function App() {
     return inputs[field] === '' ? undefined : inputs[field];
   }
 
-  function handleInputImageChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setIsImageModified({ status: true, fileType: e.target.files ? e.target.files[0].type.split("/")[0] : "", target: e.target });
-    input_check();
-  }
-
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     inputChange(e);
     input_check();
@@ -291,9 +260,8 @@ function App() {
     <>
       <main id="main">
         <UserInputWrap>
-          <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
+          <HeadingStyled className="main-heading">APP TẠO NAMECARD</HeadingStyled>
           <InputDetails
-            handleInputImageChange={handleInputImageChange}
             handleInputChange={handleInputChange}
             inputs={inputs}
             themes={themes}
@@ -306,17 +274,14 @@ function App() {
         <Card
           name={props_conf('name')}
           occupation={props_conf('occupation')}
-          website={props_conf('website')}
+          phone={props_conf('phone')}
           email={props_conf('email')}
-          about={props_conf('about')}
-          services={props_conf('services')}
           colors={colors}
           download_fun={download_image}
-          image_src={image}
           download_state={downloadState}
           breakpoint={breakpoint}
           downloadable={downloadable}
-        />
+          />
       </main>
       <Footer />
     </>

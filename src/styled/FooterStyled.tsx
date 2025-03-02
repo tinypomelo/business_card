@@ -8,7 +8,7 @@ export const StyledFooter = styled.div`
 
     .text1{
         font-size: 1rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: Helvetica, Arial, sans-serif;
         text-align: center;
         color: #757677;
     }

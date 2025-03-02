@@ -5,6 +5,6 @@ export const HeadingStyled = styled.div`
     width: 85%;
     color: #fff;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
 `;
