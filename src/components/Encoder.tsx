@@ -22,7 +22,7 @@ const Encoder = () => {
         phone: undefined,
         email: undefined,
     });
-    const [colors, setColors] = useState({
+    const [colors] = useState({
         cardBackgroundColor: "#fff",
         nameColor: "#000000",
         companyColor: "#1E4594",

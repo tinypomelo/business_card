@@ -1,7 +1,5 @@
-import React from 'react';
 import { useCallback, useEffect, useState } from 'react'
 import {useParams} from "react-router-dom";
-import { HeadingStyled } from '../styled/Headings.js'
 import Card from "../components/Card";
 
 import { doFetch } from "../services/fetchService.js";
@@ -9,7 +7,7 @@ import { doFetch } from "../services/fetchService.js";
 const Decoder = () => {
     const params = useParams();
     const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth / 16));
-    const [colors, setColors] = useState({
+    const [colors] = useState({
         cardBackgroundColor: "#fff",
         nameColor: "#000000",
         companyColor: "#1E4594",
