@@ -16,15 +16,15 @@ const Introduction = (props: Props) => {
       <table>
        <tbody>
           <tr>
-            <td><img className="qrcode"src={`data:image/svg+xml;utf8,${encodeURIComponent(newFunction())}`} /></td>
+            <td><img className="qrcode"src={`data:image/svg+xml;utf8,${encodeURIComponent(generateURL())}`} /></td>
             <td><img className="logo" src={location} alt="" /></td>
           </tr>
           <tr>
             <td>
-              <p className="name">{props.name}</p>
-              <p className="occupation">{props.occupation}</p>
+              <p className="name">{clearSpaces(props.name)}</p>
+              <p className="occupation">{clearSpaces(props.occupation)}</p>
               <p>&nbsp;</p>
-              <p className="phone"><i className="fas fa-phone"></i>{props.phone}</p>
+              <p className="phone"><i className="fas fa-phone"></i>{clearSpaces(props.phone)}</p>
               <p className="email"><i className="fas fa-envelope"></i>{props.email}</p>
             </td>
             <td>
@@ -42,8 +42,16 @@ const Introduction = (props: Props) => {
     
   )
 
-  function newFunction(): string {
-    return renderSVG('https://scadanamecard.netlify.app/decoder/' + props.name + '/' + props.email + '/' + props.phone + '/' + props.occupation);
+  function generateURL(): string {
+    // let res = 'http://localhost/decoder/' + props.name + '/' + props.email + '/' + props.phone + '/' + props.occupation;
+    let res = 'https://scadanamecard.netlify.app/decoder/' + props.name + '/' + props.email + '/' + props.phone + '/' + props.occupation;
+    res = res.replace(/\s+/g,"%20");
+    return renderSVG(res);
+  }
+
+  function clearSpaces(input: string): string {
+    let res = input.replace(/%20/g, " ");
+    return res;
   }
 }
 
