@@ -1,7 +1,6 @@
 import { IntroductionStyled } from '../styled/StyledCard'
 import location from '../assets/logo.png'
-
-import {QR} from 'qr-svg'
+import { renderSVG } from 'uqr'
 
 interface Props {
   name: string
@@ -44,12 +43,7 @@ const Introduction = (props: Props) => {
   )
 
   function newFunction(): string {
-    // let content = 'BEGIN:VCARD\nVERSION:3.0\nFN;CHARSET=UTF-8: ' + props.name + '\nORG:EVNSPC - SCADA\nEMAIL;TYPE=WORK:' + props.email + '\nTEL;TYPE=CELL:' + props.phone + ' \n\nEND:VCARD';
-    let content = 'https://scadanamecard.netlify.app/' + props.name + '/' + props.email + '/' + props.phone + '/' + props.occupation;
-    content = content.replace(/\s+/g,"%20");
-    console.log(content);
-    let res = QR(content);    
-    return res;
+    return renderSVG('https://scadanamecard.netlify.app/decoder/' + props.name + '/' + props.email + '/' + props.phone + '/' + props.occupation);
   }
 }
 
