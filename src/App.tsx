@@ -10,6 +10,7 @@ function App() {
           <BrowserRouter>
           <Routes>
             <Route path="/" element={<Encoder />} />
+            <Route path="/encoder" element={<Encoder />} />
             <Route path="/decoder/:name/:email/:phone/:occupation" element={<Decoder />} />
           </Routes>
         </BrowserRouter>
